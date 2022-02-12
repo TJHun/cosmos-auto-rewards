@@ -3,9 +3,8 @@
 # This script comes without warranties of any kind. Use at your own risk.
 
 # The purpose of this script is to withdraw rewards (if any) and delegate them to an appointed validator. This way you can reinvest (compound) rewards.
-# Cosmos Hub does currently not support automatic compounding but this is planned: https://github.com/cosmos/cosmos-sdk/issues/3448
 
-# Requirements: gaiad, curl and jq must be in the path.
+# Requirements: osmosisd, curl and jq must be in the path.
 
 
 ##############################################################################################################################################################
@@ -14,10 +13,10 @@
 
 KEY=${1}                                  # This is the key you wish to use for signing transactions, listed in first column of "gaiad keys list".
 PASSPHRASE=${2}                           # Only populate if you want to run the script periodically. This is UNSAFE and should only be done if you know what you are doing.
-DENOM="uatom"                           # Coin denominator is uatom ("microoatom"). 1 atom = 1000000 uatom.
-MINIMUM_DELEGATION_AMOUNT="2000000"    # Only perform delegations above this amount of uatom. Default: 2atom.
-RESERVATION_AMOUNT="100000"          # Keep this amount of uatom in account. Default: 0.1atom.
-VALIDATOR="cosmosvaloper1sxx9mszve0gaedz5ld7qdkjkfv8z992ax69k08"        # Default is Validator Network.
+DENOM="uosmo"                           # Coin denominator is uatom ("microoatom"). 1 atom = 1000000 uatom.
+MINIMUM_DELEGATION_AMOUNT="0"    # Only perform delegations above this amount of uatom. Default: 2atom.
+RESERVATION_AMOUNT="0"          # Keep this amount of uatom in account. Default: 0.1atom.
+VALIDATOR="osmovaloper14amduhjazqhwtkhm6kutdcy4ux5zazf5k803tq"        # Default is Validator Network.
 
 ##############################################################################################################################################################
 
@@ -27,11 +26,11 @@ VALIDATOR="cosmosvaloper1sxx9mszve0gaedz5ld7qdkjkfv8z992ax69k08"        # Defaul
 ##############################################################################################################################################################
 
 CHAIN_ID=""                                     # Current chain id. Empty means auto-detect.
-NODE="https://cosmoshub.validator.network:443"  # Either run a local full node or choose one you trust.
-GAS_PRICES="0.025uatom"                         # Gas prices to pay for transaction.
+NODE="https://rpc-osmosis.itastakers.com:443"  # Either run a local full node or choose one you trust.
+GAS_PRICES="0.0uosmo"                         # Gas prices to pay for transaction.
 GAS_ADJUSTMENT="1.30"                           # Adjustment for estimated gas
 GAS_FLAGS="--gas auto --gas-prices ${GAS_PRICES} --gas-adjustment ${GAS_ADJUSTMENT}"
-GAIABIN=gaiad
+GAIABIN=osmosisd
 ##############################################################################################################################################################
 
 
